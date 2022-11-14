@@ -6,9 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "json-server": "json-server --watch db.json --port 5000",
+    "serve": "concurrently  \"npm run json-server\" \"npm run dev\""
   },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "eslint": "8.9.0",
+    "eslint-config-next": "12.1.0",
+    "json-server": "^0.17.0"
+  },
+
   "dependencies": {
+    "react-icons": "^4.3.1",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
