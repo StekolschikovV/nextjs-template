@@ -1,7 +1,8 @@
 import {IBurger} from "../type";
+import {BACKEND_URL} from "../const";
 
 export async function getBurgersId(): Promise<number[]> {
-    const data = await fetch('http://localhost:1337/api/burgers')
+    const data = await fetch(`${BACKEND_URL}/api/burgers`)
         .then(data => data.json())
         .catch(() => []);
     return data.data.map((data: { id: number }) => {
@@ -10,7 +11,7 @@ export async function getBurgersId(): Promise<number[]> {
 }
 
 export async function getBurgers(): Promise<IBurger[]> {
-    const data = await fetch('http://localhost:1337/api/burgers?populate=*')
+    const data = await fetch(`${BACKEND_URL}/api/burgers?populate=*`)
         .then(data => data.json())
         .catch(() => []);
     const burgers = data.data.map((burger: IBurger) => {
@@ -22,7 +23,7 @@ export async function getBurgers(): Promise<IBurger[]> {
                 image: {
                     data: {
                         attributes: {
-                            url: `http://localhost:1337${burger.attributes.image.data.attributes.url}`
+                            url: `${BACKEND_URL}${burger.attributes.image.data.attributes.url}`
                         }
                     }
                 }
@@ -33,11 +34,11 @@ export async function getBurgers(): Promise<IBurger[]> {
 }
 
 export async function getBurgersById(id: string): Promise<IBurger> {
-    const data = await fetch(`http://localhost:1337/api/burgers/${id}?populate=*`)
+    const data = await fetch(`${BACKEND_URL}/api/burgers/${id}?populate=*`)
         .then(data => data.json())
         .catch(() => []);
     const burger: IBurger = data.data
 
-    burger.attributes.image.data.attributes.url = `http://localhost:1337${burger.attributes.image.data.attributes.url}`
+    burger.attributes.image.data.attributes.url = `${BACKEND_URL}${burger.attributes.image.data.attributes.url}`
     return burger
 }
