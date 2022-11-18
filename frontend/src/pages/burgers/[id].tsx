@@ -4,7 +4,9 @@ import {IBurger} from "../burgers/index";
 
 export const getStaticPaths = async () => {
   const data = await fetch('http://localhost:5000/items')
-      .then( data => data.json())
+      .then( data => {
+        return data.json()
+      })
       .catch(() => []);
 
 

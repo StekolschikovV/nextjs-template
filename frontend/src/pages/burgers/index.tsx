@@ -1,21 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../../styles/Burgers.module.css';
-
-export interface IBurger {
-  attributes: {
-    image: {
-      data: {
-        attributes: {
-          url: string
-        }
-      }
-    }
-    name: string
-    desc: string
-  }
-  id: number
-}
+import {IBurger} from "./type";
 
 export const getStaticProps = async (): Promise<{
   props: { burgers: IBurger }
