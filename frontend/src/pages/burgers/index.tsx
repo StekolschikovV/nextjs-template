@@ -2,31 +2,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../../styles/Burgers.module.css';
 import {IBurger} from "./type";
+import { getBurgers} from "../../lib/burgers";
 
-export const getStaticProps = async (): Promise<{
-  props: { burgers: IBurger }
-}> => {
-  const data = await fetch('http://localhost:1337/api/burgers?populate=*')
-      .then( data => data.json())
-      .catch(() => []);
-  const burgers = data.data.map((burger: IBurger) => {
-    return {
-      id: burger.id,
-      attributes: {
-        name: burger.attributes.name,
-        desc: burger.attributes.desc,
-        image: {
-          data: {
-            attributes: {
-              url: `http://localhost:1337${burger.attributes.image.data.attributes.url}`
-            }
-          }
-       }
-      }
-    }
-  })
+export const getStaticProps = async (): Promise<{ props: { burgers: IBurger[] } }> => {
+  const burgers = await getBurgers()
   return {
-    props: { burgers}
+    props: { burgers }
   }
 }
 
