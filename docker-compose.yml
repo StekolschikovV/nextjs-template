@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+
   next-app:
     container_name: next-app
     build:
@@ -26,3 +27,4 @@ networks:
 
 volumes:
   myapp:
+

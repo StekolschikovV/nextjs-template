@@ -12,15 +12,17 @@ export interface IBurger {
 export const getStaticProps = async (): Promise<{
   props: { burgers: IBurger }
 }> => {
-  const res = await fetch('http://localhost:5000/items');
-  const data = await res.json();
+
+  const data = await fetch('http://localhost:5000/items')
+      .then( data => data.json())
+      .catch(() => []);
 
   return {
     props: { burgers: data }
   }
 }
 
-const Burgers: React.FC<{burgers: IBurger[]}> = ({ burgers }) => {
+const Burgers: React.FC<{burgers: IBurger[]}> = ({ burgers = [] }) => {
   return (
     <div>
       <h1>Наши Бургеры</h1>
