@@ -1,15 +1,15 @@
 import Image from 'next/image';
 import styles from '../../styles/Burgers.module.css';
-import {IBurger} from "./type";
+import {IBurger} from "../../type";
 import {getBurgersById, getBurgersId} from "../../lib/burgers";
 
 export const getStaticPaths = async () => {
-    const burgersId = await getBurgersId()
-    const paths = burgersId.map((id) => {
+    const burgers = await getBurgersId()
+    const paths = burgers.map(burgerId => {
         return {
-            params: {id: id}
+            params: {id: `${burgerId}`}
         }
-    });
+    })
     return {
         paths,
         fallback: false

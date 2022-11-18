@@ -1,10 +1,12 @@
-import {IBurger} from "../pages/burgers/type";
+import {IBurger} from "../type";
 
 export async function getBurgersId(): Promise<number[]> {
     const data = await fetch('http://localhost:1337/api/burgers')
         .then(data => data.json())
         .catch(() => []);
-    return data.data
+    return data.data.map((data: { id: number }) => {
+        return data.id
+    })
 }
 
 export async function getBurgers(): Promise<IBurger[]> {
