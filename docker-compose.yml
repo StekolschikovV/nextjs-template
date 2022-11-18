@@ -2,8 +2,44 @@ version: '3'
 
 services:
 
-  next-app:
-    container_name: next-app
+  db:
+    container_name: db
+    image: postgres:14
+    restart: always
+    logging:
+      driver: none
+    environment:
+      POSTGRES_DB: "next-app"
+      POSTGRES_USER: "next-app"
+      POSTGRES_PASSWORD: "next-app"
+    ports:
+      - "5433:5432"
+    networks:
+      - dev
+    healthcheck:
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U waves-school -d waves-school'" ]
+      interval: 100s
+      timeout: 300s
+      retries: 300
+
+  backend:
+    container_name: backend
+    command: node cluster.js
+    links:
+      - db
+    #    env_file: "./backend/.env"
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_HOST: "db"
+      DATABASE_CLIENT: "postgres"
+      DATABASE_PORT: "5432"
+      DATABASE_USERNAME: "next-app"
+      DATABASE_PASSWORD: "next-app"
+
+  frontend:
+    container_name: frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile

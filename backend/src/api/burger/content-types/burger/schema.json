@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "burgers",
+  "info": {
+    "singularName": "burger",
+    "pluralName": "burgers",
+    "displayName": "Burger",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "desc": {
+      "type": "text"
+    },
+    "price": {
+      "type": "decimal"
+    }
+  }
+}
