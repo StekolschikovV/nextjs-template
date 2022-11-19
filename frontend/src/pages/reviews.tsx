@@ -7,10 +7,7 @@ const ReviewsPage = () => {
     const {data, error} = useSWR<IComment[], string>(JSONPLACEHOLDER_URL, (url) =>
         fetch(url)
             .then((res) => res.json())
-            .then(res => {
-                console.log(res);
-                return res.slice(0, 20)
-            })
+            .then(res => res.slice(0, 20))
     )
     if (error) return <div>ошибка загрузки</div>
     if (!data) return <div>загрузка...</div>
