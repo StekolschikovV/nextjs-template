@@ -1,5 +1,5 @@
-import {IBurger} from "../type";
-import {BACKEND_URL} from "../const";
+import {IBurger} from "type";
+import {BACKEND_URL} from "const";
 
 export async function getBurgersId(): Promise<number[]> {
     const data = await fetch(`${BACKEND_URL}/api/burgers`)

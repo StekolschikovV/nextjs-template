@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '../../styles/Burgers.module.css';
-import {IBurger} from "../../type";
-import {getBurgers} from "../../lib/burgers";
+import styles from 'styles/Burgers.module.css';
+import {IBurger} from "type";
+import {getBurgers} from "lib/burgers";
 
 export const getStaticProps = async (): Promise<{ props: { burgers: IBurger[] } }> => {
     const burgers = await getBurgers()

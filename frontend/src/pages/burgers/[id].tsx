@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import styles from '../../styles/Burgers.module.css';
-import {IBurger} from "../../type";
-import {getBurgersById, getBurgersId} from "../../lib/burgers";
+import styles from 'styles/Burgers.module.css';
+import {IBurger} from "type";
+import {getBurgersById, getBurgersId} from "lib/burgers";
 
 export const getStaticPaths = async () => {
     const burgers = await getBurgersId()

@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import useSWR from 'swr'
-import {IComment} from "../type";
-import {JSONPLACEHOLDER_URL} from "../const";
+import {IComment} from "type";
+import {JSONPLACEHOLDER_URL} from "const";
 
 const ReviewsPage = () => {
     const {data, error} = useSWR<IComment[], string>(JSONPLACEHOLDER_URL, (url) =>
