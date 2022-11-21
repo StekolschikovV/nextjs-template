@@ -2,6 +2,17 @@ import Image from 'next/image';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from 'pages/index.module.css';
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+
+// @ts-ignore
+export async function getStaticProps({locale}) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+            // Will be passed to the page component as props
+        },
+    };
+}
 
 const Home = () => {
     return (

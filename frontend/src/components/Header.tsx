@@ -1,17 +1,19 @@
 import Link from 'next/link';
 import {SiBurgerking} from 'react-icons/si';
+import {useTranslation} from "next-i18next";
 
 const Header = () => {
+    const {t} = useTranslation();
     return (
         <header>
             <div>
                 <SiBurgerking/>
             </div>
             <nav>
-                <Link href="/">Домой</Link>
-                <Link href="/about">О Нас</Link>
-                <Link href="/reviews">Отзывы</Link>
-                <Link href="/burgers">Бургеры</Link>
+                <Link href="/">{t('home')}</Link>
+                <Link href="/about">{t('about-us')}</Link>
+                <Link href="/reviews">{t('reviews')}</Link>
+                <Link href="/burgers">{t('burgers')}</Link>
             </nav>
             <div>
                 <Link href="/" locale="en">

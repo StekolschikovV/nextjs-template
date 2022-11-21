@@ -4,6 +4,8 @@ import styles from 'pages/burgers/index.module.css';
 
 import {IBurger} from "type";
 import {getBurgersById, getBurgersId} from "lib/burgers";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+
 
 export const getStaticPaths = async () => {
     const burgers = await getBurgersId()
@@ -18,10 +20,16 @@ export const getStaticPaths = async () => {
     }
 }
 
-export const getStaticProps = async (context: { params: { id: any; }; }) => {
+export const getStaticProps = async (context: {
+    locale: string;
+    params: { id: any; }
+}) => {
     const burger = await getBurgersById(context.params.id)
     return {
-        props: {burger}
+        props: {
+            ...(await serverSideTranslations(context.locale, ['common'])),
+            burger,
+        }
     }
 }
 

@@ -3,6 +3,21 @@ import useSWR from 'swr'
 import {IComment} from "type";
 import {JSONPLACEHOLDER_URL} from "const";
 import {hi} from "lib/hi";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+
+interface HomeProps {
+    locale: string
+}
+
+// @ts-ignore
+export async function getStaticProps({locale}) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+            // Will be passed to the page component as props
+        },
+    };
+}
 
 const ReviewsPage = () => {
     const {data, error} = useSWR<IComment[], string>(JSONPLACEHOLDER_URL, (url) =>
