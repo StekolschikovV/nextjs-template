@@ -1,5 +1,7 @@
 import Image from 'next/image';
-import styles from 'styles/Burgers.module.css';
+
+import styles from 'pages/burgers/index.module.css';
+
 import {IBurger} from "type";
 import {getBurgersById, getBurgersId} from "lib/burgers";
 
