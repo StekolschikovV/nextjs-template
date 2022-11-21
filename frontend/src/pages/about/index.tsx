@@ -1,22 +1,18 @@
 import Head from 'next/head';
 import {hi} from "lib/hi";
 import style from "pages/about/index.module.scss"
-import {useTranslation} from "next-i18next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import {GetStaticProps} from "next";
 
-// @ts-ignore
-export async function getStaticProps({locale}) {
+export const getStaticProps: GetStaticProps = async ({locale}) => {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ['common'])),
-            // Will be passed to the page component as props
+            ...(await serverSideTranslations(locale || "en", ['common'])),
         },
     };
 }
 
 const AboutPage = () => {
-    const {t} = useTranslation();
-
     return (
         <>
             <Head>

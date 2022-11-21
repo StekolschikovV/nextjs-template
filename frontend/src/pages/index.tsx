@@ -3,13 +3,12 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from 'pages/index.module.css';
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import {GetStaticProps} from "next";
 
-// @ts-ignore
-export async function getStaticProps({locale}) {
+export const getStaticProps: GetStaticProps = async ({locale}) => {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ['common'])),
-            // Will be passed to the page component as props
+            ...(await serverSideTranslations(locale || "en", ['common'])),
         },
     };
 }

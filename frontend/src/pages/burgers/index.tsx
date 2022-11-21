@@ -5,28 +5,16 @@ import {IBurger} from "type";
 import {getBurgers} from "lib/burgers";
 import {useTranslation} from "next-i18next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import {GetStaticProps} from "next";
 
-// // @ts-ignore
-// export async function getStaticProps({locale}) {
-//     return {
-//         props: {
-//             ...(await serverSideTranslations(locale, ['common'])),
-//             // Will be passed to the page component as props
-//         },
-//     };
-// }
-
-
-// @ts-ignore
-export const getStaticProps = async (context: { locale }): Promise<{ props: any }> => {
+export const getStaticProps: GetStaticProps = async ({locale}) => {
     const burgers = await getBurgers()
     return {
         props: {
-            ...(await serverSideTranslations(context.locale, ['common'])),
+            ...(await serverSideTranslations(locale || "en", ['common'])),
             burgers
         },
-
-    }
+    };
 }
 
 const Burgers: React.FC<{ burgers: IBurger[] }> = ({burgers = []}) => {

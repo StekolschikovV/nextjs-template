@@ -4,17 +4,12 @@ import {IComment} from "type";
 import {JSONPLACEHOLDER_URL} from "const";
 import {hi} from "lib/hi";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import {GetStaticProps} from "next";
 
-interface HomeProps {
-    locale: string
-}
-
-// @ts-ignore
-export async function getStaticProps({locale}) {
+export const getStaticProps: GetStaticProps = async ({locale}) => {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ['common'])),
-            // Will be passed to the page component as props
+            ...(await serverSideTranslations(locale || "en", ['common'])),
         },
     };
 }
