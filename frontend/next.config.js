@@ -9,7 +9,7 @@ const nextConfig = {
     i18n,
 
     env: {
-        someKey: 'some-value'
+        someKey: 'some-value-from-env'
     }
 }
 

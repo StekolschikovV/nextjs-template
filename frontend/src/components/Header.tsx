@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import {SiBurgerking} from 'react-icons/si';
 import {useTranslation} from "next-i18next";
+import {useRouter} from "next/router";
 
 const Header = () => {
     const {t} = useTranslation();
+    const router = useRouter()
     return (
         <header>
             <div>
@@ -16,11 +18,11 @@ const Header = () => {
                 <Link href="/burgers">{t('burgers')}</Link>
             </nav>
             <div>
-                <Link href="/" locale="en">
+                <Link href={router.asPath} locale="en">
                     EN
                 </Link>
                 |||
-                <Link href="/" locale="ru">
+                <Link href={router.asPath} locale="ru">
                     RU
                 </Link>
                 ||| {process.env.someKey}
