@@ -2,6 +2,7 @@ import Head from 'next/head';
 import useSWR from 'swr'
 import {IComment} from "type";
 import {JSONPLACEHOLDER_URL} from "const";
+import {hi} from "lib/hi";
 
 const ReviewsPage = () => {
     const {data, error} = useSWR<IComment[], string>(JSONPLACEHOLDER_URL, (url) =>
@@ -28,6 +29,10 @@ const ReviewsPage = () => {
                             </div>)
                     })}
                 </div>
+                <button onClick={() => {
+                    hi.say()
+                }}>Say HI
+                </button>
             </div>
         </>
     );
