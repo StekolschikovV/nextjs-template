@@ -3,6 +3,7 @@ import {hi} from "lib/hi";
 import style from "pages/about/index.module.scss"
 
 const AboutPage = () => {
+
     return (
         <>
             <Head>

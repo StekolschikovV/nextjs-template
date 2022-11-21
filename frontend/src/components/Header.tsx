@@ -21,6 +21,7 @@ const Header = () => {
                 <Link href="/" locale="ru">
                     RU
                 </Link>
+                ||| {process.env.someKey}
             </div>
         </header>
 
