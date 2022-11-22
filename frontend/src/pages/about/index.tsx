@@ -3,6 +3,10 @@ import {hi} from "lib/hi";
 import style from "pages/about/index.module.scss"
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {GetStaticProps} from "next";
+import {SizeControls} from "pages/SizeControls";
+import {Counter} from "pages/Counter";
+import {CounterControls} from "pages/CounterControls";
+import {useRootStore} from "pages/providers/RootStoreProvider";
 
 export const getStaticProps: GetStaticProps = async ({locale}) => {
     return {
@@ -13,6 +17,8 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
 }
 
 const AboutPage = () => {
+    const store = useRootStore();
+
     return (
         <>
             <Head>
@@ -20,8 +26,12 @@ const AboutPage = () => {
                 <meta name="title" content="Все о жирных бургерах"/>
             </Head>
 
+            <SizeControls/>
+            <Counter/>
+            <CounterControls/>
+
             <div className={style.about}>
-                <h1>О нас</h1>
+                <h1>О нас {store.languageStore.language}</h1>
                 <p>Жирные бургеры - это старые добрые бургеры по классической рецептуре, нужных размеров и за приемлемую
                     цену.</p>
                 <p>Готовят их на американский, мексиканский и итальянский манер, не жалея ни соуса, ни начинки.</p>
