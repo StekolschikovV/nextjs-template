@@ -1,10 +1,10 @@
-import {CounterHydration, CounterStore} from "./CounterStore";
+import {CounterStore} from "./CounterStore";
 import {sizeSwitcherStoreFactory} from "./SizeSwitcherStore";
 import {LanguageStore} from "pages/stores/LanguageStore";
 import {AccountStore} from "pages/stores/AccountStore";
 
 export type RootStoreHydration = {
-    stopwatchStore?: CounterHydration;
+    accountStore?: any;
 };
 
 export class RootStore {
@@ -20,9 +20,14 @@ export class RootStore {
         this.sizeSwitcherStore = sizeSwitcherStoreFactory(this);
     }
 
+    hydrateFromLocalStore = () => {
+        this.accountStore.hydrateFromLocalStore()
+    }
+
     hydrate(data: RootStoreHydration) {
-        if (data.stopwatchStore) {
-            this.counterStore.hydrate(data.stopwatchStore);
-        }
+        console.log("hydrate", data)
+        // if (data.stopwatchStore) {
+        //     this.counterStore.hydrate(data.stopwatchStore);
+        // }
     }
 }

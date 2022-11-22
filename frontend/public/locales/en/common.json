@@ -1,6 +1,9 @@
 {
-  "home": "Home",
-  "about-us": "About Us",
-  "reviews": "Reviews",
-  "burgers": "Burgers"
+  "nav": {
+    "home": "Home",
+    "about-us": "About Us",
+    "reviews": "Reviews",
+    "burgers": "Burgers",
+    "account": "Account"
+  }
 }

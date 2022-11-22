@@ -1,6 +1,9 @@
 {
-  "home": "Дом",
-  "about-us": "О Нас",
-  "reviews": "Отзывы",
-  "burgers": "Бургеры"
+  "nav": {
+    "home": "Дом",
+    "about-us": "О Нас",
+    "reviews": "Отзывы",
+    "burgers": "Бургеры",
+    "account": "Аккаунт"
+  }
 }
