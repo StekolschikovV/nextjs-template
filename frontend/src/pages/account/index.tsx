@@ -1,7 +1,7 @@
 import {GetStaticProps} from "next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import Head from 'next/head';
-import {useRootStore} from "pages/providers/RootStoreProvider";
+import {useRootStore} from "providers/RootStoreProvider";
 import {useEffect, useRef} from "react";
 import {observer} from "mobx-react-lite";
 import {Form} from "react-bootstrap";

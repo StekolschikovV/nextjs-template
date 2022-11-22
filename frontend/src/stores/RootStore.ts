@@ -1,4 +1,4 @@
-import {AccountStore} from "pages/stores/AccountStore";
+import {AccountStore} from "stores/AccountStore";
 
 export type RootStoreHydration = {
     accountStore?: any;

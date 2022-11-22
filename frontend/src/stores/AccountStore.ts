@@ -1,4 +1,4 @@
-import {RootStore, RootStoreHydration} from "pages/stores/RootStore";
+import {RootStore, RootStoreHydration} from "stores/RootStore";
 import {action, makeObservable, observable} from "mobx";
 import {localStore} from "lib/localStore";
 

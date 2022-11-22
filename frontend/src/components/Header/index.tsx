@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {SiBurgerking} from 'react-icons/si';
 import {useTranslation} from "next-i18next";
 import {useRouter} from "next/router";
-import {useRootStore} from "pages/providers/RootStoreProvider";
+import {useRootStore} from "providers/RootStoreProvider";
 import styles from "./index.module.scss"
 import {observer} from "mobx-react-lite";
 import {useEffect} from "react";

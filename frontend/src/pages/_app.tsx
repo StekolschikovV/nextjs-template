@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'styles/globals.scss';
 import {useRouter} from "next/router";
 import {appWithTranslation} from 'next-i18next';
-import {RootStoreProvider} from "pages/providers/RootStoreProvider";
+import {RootStoreProvider} from "providers/RootStoreProvider";
 import {GetStaticProps} from "next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
