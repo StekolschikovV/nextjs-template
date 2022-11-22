@@ -5,7 +5,7 @@ export async function getBurgersId(): Promise<number[]> {
     const data = await fetch(`${BACKEND_URL}/api/burgers`)
         .then(data => data.json())
         .catch(() => []);
-    return data.data.map((data: { id: number }) => {
+    return data?.data?.map((data: { id: number }) => {
         return data.id
     })
 }
@@ -14,7 +14,7 @@ export async function getBurgers(): Promise<IBurger[]> {
     const data = await fetch(`${BACKEND_URL}/api/burgers?populate=*`)
         .then(data => data.json())
         .catch(() => []);
-    const burgers = data.data.map((burger: IBurger) => {
+    const burgers = data?.data?.map((burger: IBurger) => {
         return {
             id: burger.id,
             attributes: {

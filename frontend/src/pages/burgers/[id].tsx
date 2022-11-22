@@ -9,11 +9,11 @@ import {GetStaticProps} from "next";
 
 export const getStaticPaths = async () => {
     const burgers = await getBurgersId()
-    const paths = burgers.map(burgerId => {
+    const paths = burgers?.map(burgerId => {
         return {
             params: {id: `${burgerId}`}
         }
-    })
+    }) || [];
     return {
         paths,
         fallback: false

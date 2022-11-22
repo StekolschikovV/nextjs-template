@@ -8,7 +8,7 @@ import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {GetStaticProps} from "next";
 
 export const getStaticProps: GetStaticProps = async ({locale}) => {
-    const burgers = await getBurgers()
+    const burgers = await getBurgers() || []
     return {
         props: {
             ...(await serverSideTranslations(locale || "en", ['common'])),
@@ -20,6 +20,7 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
 const Burgers: React.FC<{ burgers: IBurger[] }> = ({burgers = []}) => {
     const {t} = useTranslation("common");
 
+    if (burgers.length === 0) return (<div style={{color: "red", textAlign: "center"}}>Сейчас бургеров нет</div>)
     return (
         <div>
             <h1>Наши Бургеры {t("home")}</h1>

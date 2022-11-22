@@ -1,10 +1,9 @@
 import Head from 'next/head';
-import useSWR from 'swr'
-import {IComment} from "type";
-import {JSONPLACEHOLDER_URL} from "const";
 import {hi} from "lib/hi";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {GetStaticProps} from "next";
+import {useRandomColor} from "hooks/random-color";
+import {useGetComment} from "hooks/get-comments";
 
 export const getStaticProps: GetStaticProps = async ({locale}) => {
     return {
@@ -15,13 +14,19 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
 }
 
 const ReviewsPage = () => {
-    const {data, error} = useSWR<IComment[], string>(JSONPLACEHOLDER_URL, (url) =>
-        fetch(url)
-            .then((res) => res.json())
-            .then(res => res.slice(0, 20))
-    )
-    if (error) return <div>ошибка загрузки</div>
-    if (!data) return <div>загрузка...</div>
+    // before !!!
+    // const {data, error} = useSWR<IComment[], string>(JSONPLACEHOLDER_URL, (url) =>
+    //     fetch(url)
+    //         .then((res) => res.json())
+    //         .then(res => res.slice(0, 20))
+    // )
+    // !!! after
+    const {commentData, commentError} = useGetComment()
+
+    const {resultRandomColor} = useRandomColor(commentData)
+
+    if (commentError) return <div>ошибка загрузки</div>
+    if (!commentData) return <div>загрузка...</div>
     return (
         <>
             <Head>
@@ -31,12 +36,8 @@ const ReviewsPage = () => {
             <div>
                 <h1>Отзывы клиентов</h1>
                 <div className='reviews'>
-                    {!!data.length && data.map((res: any) => {
-                        return (
-                            <div key={res.id} className='review'>
-                                {res.id}){' '}
-                                {`${res.body.slice(0, 90)}...`}
-                            </div>)
+                    {resultRandomColor && !!resultRandomColor.length && resultRandomColor.map((res: any) => {
+                        return (<div key={res.id} dangerouslySetInnerHTML={{__html: res.body}}/>)
                     })}
                 </div>
                 <button onClick={() => {
