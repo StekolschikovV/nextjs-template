@@ -1,9 +1,10 @@
 import {action, computed, makeObservable, observable, runInAction} from 'mobx'
 import {enableStaticRendering} from 'mobx-react-lite'
+import {IStore} from "type";
 
 enableStaticRendering(typeof window === 'undefined')
 
-export class Store {
+export class Store implements IStore {
     lastUpdate = 0
     light = false
     private timer: number | undefined;

@@ -1,14 +1,12 @@
-import { observer } from 'mobx-react-lite'
-import { useStore } from './StoreProvider'
+import {observer} from 'mobx-react-lite'
+import {useStore} from './StoreProvider'
 
 const Clock = observer(function Clock(props) {
-  // use store from the store context
-  const store = useStore()
-
-  return (
-    <div className={store.light ? 'light' : ''}>
-      {store.timeString}
-      <style jsx>{`
+    const store = useStore()
+    return (
+        <div className={store.light ? 'light' : ''}>
+            {store.timeString}
+            <style jsx>{`
         div {
           padding: 15px;
           color: #82fa58;
@@ -21,8 +19,11 @@ const Clock = observer(function Clock(props) {
           background-color: #999;
         }
       `}</style>
-    </div>
-  )
+            <button onClick={() => store.start()}>start</button>
+            <button onClick={() => store.stop()}>stop</button>
+        </div>
+
+    )
 })
 
 export default Clock

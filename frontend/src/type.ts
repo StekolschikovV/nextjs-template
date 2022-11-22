@@ -1,3 +1,11 @@
+export interface IStore {
+    lastUpdate: number
+    light: boolean
+    timeString: string
+    start: () => void
+    stop: () => void
+}
+
 export interface IBurger {
     attributes: {
         image: {
@@ -27,3 +35,4 @@ export interface IComment {
     name: string
     postId: number
 }
+

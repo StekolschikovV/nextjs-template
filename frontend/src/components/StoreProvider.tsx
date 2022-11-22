@@ -1,16 +1,16 @@
 import {createContext, useContext} from 'react'
 import {Store} from '../store'
+import {IStore} from "type";
 
 let store: Store
-// @ts-ignore
-export const StoreContext = createContext()
 
-export function useStore() {
-    const context = useContext(StoreContext)
+export const StoreContext = createContext<IStore | null>(null)
+
+export function useStore(): IStore {
+    const context = useContext(StoreContext) as IStore
     if (context === undefined) {
         throw new Error('useStore must be used within StoreProvider')
     }
-
     return context
 }
 
