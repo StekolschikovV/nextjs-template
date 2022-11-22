@@ -14,9 +14,6 @@ export const getStaticPaths = async () => {
             params: {id: `${burgerId}`}
         }
     }) || [];
-
-    console.log("++++++++", paths)
-
     return {
         paths,
         fallback: false
