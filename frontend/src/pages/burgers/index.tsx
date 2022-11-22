@@ -19,7 +19,6 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
 
 const Burgers: React.FC<{ burgers: IBurger[] }> = ({burgers = []}) => {
     const {t} = useTranslation("common");
-
     if (burgers.length === 0) return (<div style={{color: "red", textAlign: "center"}}>Сейчас бургеров нет</div>)
     return (
         <div>

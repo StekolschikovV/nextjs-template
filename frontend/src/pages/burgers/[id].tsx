@@ -22,6 +22,8 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
     const burger = await getBurgersById(context.params.id)
+    console.log("burger3 ", burger)
+
     return {
         props: {
             ...(await serverSideTranslations(context.locale, ['common'])),
@@ -31,6 +33,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
 }
 
 const Details: React.FC<{ burger: IBurger }> = ({burger}) => {
+    console.log("burger4 ", burger)
+
     return (
         burger && <div className={styles.singleBurger}>
             <h1>{burger.attributes.name}</h1>
