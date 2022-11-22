@@ -3,8 +3,11 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
+
+COPY . .
+
 # Install dependencies based on the preferred package manager
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+#COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 
 # Omit --production flag for TypeScript devDependencies
 RUN \
@@ -14,12 +17,11 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
-
-COPY src ./src
-COPY public ./public
-RUN ls
-COPY next.config.js .
-COPY tsconfig.json .
+#COPY . .
+#COPY src ./src
+#COPY public ./public
+#COPY next.config.js .
+#COPY tsconfig.json .
 
 # Environment variables must be present at build time
 # https://github.com/vercel/next.js/discussions/14030

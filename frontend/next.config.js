@@ -5,7 +5,7 @@ const nextConfig = {
     // reactStrictMode: true,
     // swcMinify: true,
     output: 'standalone',
-    images: {domains: ['localhost']},
+    images: {domains: ['localhost', 'burger-nextjs.herokuapp.com']},
     i18n,
 
     env: {
