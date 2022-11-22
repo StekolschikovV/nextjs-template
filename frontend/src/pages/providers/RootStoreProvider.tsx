@@ -13,23 +13,12 @@ export function useRootStore() {
     if (context === undefined) {
         throw new Error("useRootStore must be used within RootStoreProvider");
     }
-
     return context;
 }
 
-export function useCounterStore() {
-    const {counterStore} = useRootStore();
-    return counterStore;
-}
-
-export function useSizeSwitcherStore() {
-    const {sizeSwitcherStore} = useRootStore();
-    return sizeSwitcherStore;
-}
-
-export function useLanguageStore() {
-    const {languageStore} = useRootStore();
-    return languageStore;
+export function useAccountStore() {
+    const {accountStore} = useRootStore();
+    return accountStore;
 }
 
 export function RootStoreProvider({children, hydrationData,}: {

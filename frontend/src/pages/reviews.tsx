@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import {hi} from "lib/hi";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {GetStaticProps} from "next";
 import {useRandomColor} from "hooks/random-color";
@@ -40,10 +39,6 @@ const ReviewsPage = () => {
                         return (<div key={res.id} dangerouslySetInnerHTML={{__html: res.body}}/>)
                     })}
                 </div>
-                <button onClick={() => {
-                    hi.say()
-                }}>Say HI
-                </button>
             </div>
         </>
     );

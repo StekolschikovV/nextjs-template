@@ -14,6 +14,10 @@ const Index = observer(() => {
     useEffect(() => {
         store.hydrateFromLocalStore()
     }, [])
+    const active = [
+        styles.locale,
+        styles.localeActive
+    ]
     return (
         <header>
 
@@ -29,17 +33,20 @@ const Index = observer(() => {
             </nav>
             <div>
 
-                <Link href={router.asPath} locale="en">
+                {/*{router.locale}*/}
+                <Link href={router.asPath} className={router.locale === 'en' ? styles.localeActive : styles.locale}
+                      locale="en">
                     EN
                 </Link>
-                |||
-                <Link href={router.asPath} locale="ru">
+
+                <Link href={router.asPath} className={router.locale === 'ru' ? styles.localeActive : styles.locale}
+                      locale="ru">
                     RU
                 </Link>
-                {process.env.someKey}
             </div>
 
             <div className={styles.accountContainer}>
+                <div>{process.env.someKey}</div>
                 <div className={styles.accountName}>Name: {store.accountStore.name}</div>
                 <div className={styles.accountAddress}>Address: {store.accountStore.address}</div>
             </div>

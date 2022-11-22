@@ -13,7 +13,6 @@ function MyApp({Component, pageProps}) {
     return (
         <RootStoreProvider hydrationData={pageProps.hydrationData}>
             <Layout>
-                locale: {router.locale}
                 <Component {...pageProps} />
             </Layout>
         </RootStoreProvider>

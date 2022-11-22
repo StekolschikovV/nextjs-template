@@ -34,6 +34,7 @@ export async function getBurgers(): Promise<IBurger[]> {
 }
 
 export async function getBurgersById(id: string): Promise<IBurger> {
+    console.log("!!!!")
     const data = await fetch(`${BACKEND_URL}/api/burgers/${id}?populate=*`)
         .then(data => data.json())
         .catch(() => []);
