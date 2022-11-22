@@ -1,19 +1,21 @@
 import Image from 'next/image';
-
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import {GetStaticPaths, GetStaticProps} from "next";
+import {getBurgersById, getBurgersId} from "lib/burgers";
+import {IBurger} from "type";
 import styles from 'pages/burgers/index.module.css';
 
-import {IBurger} from "type";
-import {getBurgersById, getBurgersId} from "lib/burgers";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations";
-import {GetStaticProps} from "next";
-
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async (context) => {
     const burgers = await getBurgersId()
-    const paths = burgers?.map(burgerId => {
-        return {
-            params: {id: `${burgerId}`}
+    let paths: any [] = []
+    burgers.map(burgerId => {
+        paths.push({params: {id: `${burgerId}`}})
+        if (context.locales) {
+            context.locales.map(locale => {
+                paths.push({params: {id: `${burgerId}`}, locale})
+            })
         }
-    }) || [];
+    }) || []
     return {
         paths,
         fallback: false
@@ -26,7 +28,9 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
         props: {
             ...(await serverSideTranslations(context.locale, ['common'])),
             burger,
-        }
+            locale: context.locale
+
+        },
     }
 }
 
@@ -40,8 +44,6 @@ const Details: React.FC<{ burger: IBurger }> = ({burger}) => {
                     alt={`img`}
                     width="100"
                     height="100"
-                    layout="responsive"
-                    objectFit="cover"
                 />
             </div>
             <div>
