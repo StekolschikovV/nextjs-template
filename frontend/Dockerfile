@@ -17,6 +17,7 @@ RUN \
 
 COPY src ./src
 COPY public ./public
+RUN ls
 COPY next.config.js .
 COPY tsconfig.json .
 
