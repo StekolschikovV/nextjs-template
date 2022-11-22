@@ -1,8 +1,8 @@
 install-back:
-	cd backend && npm i
+	cd backend && yarn
 
 install-front:
-	cd frontend && npm i
+	cd frontend && yarn
 
 install: install-front install-back
 
