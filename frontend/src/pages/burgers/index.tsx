@@ -31,8 +31,6 @@ const Burgers: React.FC<{ burgers: IBurger[] }> = ({burgers = []}) => {
                             alt={`img`}
                             width="100"
                             height="100"
-                            layout="responsive"
-                            objectFit="cover"
                         />
                     </div>
                     <div>
