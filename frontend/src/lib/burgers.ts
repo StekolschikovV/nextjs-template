@@ -37,11 +37,7 @@ export async function getBurgersById(id: string): Promise<IBurger> {
     const data = await fetch(`${BACKEND_URL}/api/burgers/${id}?populate=*`)
         .then(data => data.json())
         .catch(() => []);
-    console.log("1 data", data)
     const burger: IBurger = data.data
-
     burger.attributes.image.data.attributes.url = `${BACKEND_URL}${burger.attributes.image.data.attributes.url}`
-    console.log("2 burger", burger)
-
     return burger
 }
