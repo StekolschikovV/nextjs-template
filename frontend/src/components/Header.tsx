@@ -2,12 +2,29 @@ import Link from 'next/link';
 import {SiBurgerking} from 'react-icons/si';
 import {useTranslation} from "next-i18next";
 import {useRouter} from "next/router";
+import {useStore} from './StoreProvider'
+import {useEffect} from 'react'
+import Clock from './Clock'
 
 const Header = () => {
     const {t} = useTranslation();
     const router = useRouter()
+
+    // use store from the store context
+    const store = useStore()
+
+    //start the clock when the component is mounted
+    useEffect(() => {
+        store.start()
+
+        // stop the clock when the component unmounts
+        return () => {
+            store.stop()
+        }
+    }, [store])
     return (
         <header>
+            <Clock/>
             <div>
                 <SiBurgerking/>
             </div>
