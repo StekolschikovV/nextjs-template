@@ -7,7 +7,6 @@ const nextConfig = {
     output: 'standalone',
     images: {domains: ['localhost', 'burger-nextjs.herokuapp.com']},
     i18n,
-
     env: {
         someKey: 'some-value-from-env'
     },

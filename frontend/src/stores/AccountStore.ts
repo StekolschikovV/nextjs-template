@@ -1,6 +1,6 @@
 import {RootStore, RootStoreHydration} from "stores/RootStore";
-import {action, makeObservable, observable} from "mobx";
 import {localStore} from "lib/localStore";
+import {makeAutoObservable} from "mobx";
 
 export class AccountStore {
 
@@ -10,12 +10,7 @@ export class AccountStore {
 
     constructor(root: RootStore) {
         this.root = root;
-        makeObservable(this, {
-            setName: action,
-            setAddress: action,
-            name: observable,
-            address: observable,
-        });
+        makeAutoObservable(this)
     }
 
     setName = (name: string) => {
